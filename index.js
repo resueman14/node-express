@@ -16,12 +16,17 @@ app.use(express.static('public'))
 
 app.get('/',(req,res)=>{
     res.status(200)
-    res.render('index')
+    res.render('index',{title:'Главная'})
 })
 
-app.get('/about',(req,res)=>{
+app.get('/add',(req,res)=>{
     res.status(200)
-    res.render('about')
+    res.render('add',{title:'Добавление нового элемента'})
+})
+
+app.get('/items',(req,res)=>{
+    res.status(200)
+    res.render('items',{title:'Продукты'})
 })
 
 
