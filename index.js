@@ -15,9 +15,9 @@ app.set('view engine', 'hbs')
 app.set('views','views')
 
 app.use(express.static('public'))
-app.use(homeRoutes)
-app.use(addRoutes)
-app.use(itemsRoutes)
+app.use('/', homeRoutes)
+app.use('/add', addRoutes)
+app.use('/items', itemsRoutes)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
