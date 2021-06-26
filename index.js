@@ -16,17 +16,17 @@ app.use(express.static('public'))
 
 app.get('/',(req,res)=>{
     res.status(200)
-    res.render('index',{title:'Главная'})
+    res.render('index',{title:'Главная', isHome: true})
 })
 
 app.get('/add',(req,res)=>{
     res.status(200)
-    res.render('add',{title:'Добавление нового элемента'})
+    res.render('add',{title:'Добавление нового элемента', isAdd: true})
 })
 
 app.get('/items',(req,res)=>{
     res.status(200)
-    res.render('items',{title:'Продукты'})
+    res.render('items',{title:'Продукты', isItems: true})
 })
 
 
