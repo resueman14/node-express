@@ -1,6 +1,8 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
-
+const homeRoutes = require('./routes/home')
+const addRoutes = require('./routes/add')
+const itemsRoutes = require('./routes/items')
 const app = express()
 
 const hbs = exphbs.create({
@@ -13,22 +15,9 @@ app.set('view engine', 'hbs')
 app.set('views','views')
 
 app.use(express.static('public'))
-
-app.get('/',(req,res)=>{
-    res.status(200)
-    res.render('index',{title:'Главная', isHome: true})
-})
-
-app.get('/add',(req,res)=>{
-    res.status(200)
-    res.render('add',{title:'Добавление нового элемента', isAdd: true})
-})
-
-app.get('/items',(req,res)=>{
-    res.status(200)
-    res.render('items',{title:'Продукты', isItems: true})
-})
-
+app.use(homeRoutes)
+app.use(addRoutes)
+app.use(itemsRoutes)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
