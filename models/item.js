@@ -20,10 +20,8 @@ class Item {
                 (err) => {
                     if (err) { reject(err) 
                     } else { resolve(
-
                     )}
                 }
-
             )
         })
     }
