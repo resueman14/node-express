@@ -5,3 +5,23 @@
 .price {
    font-size: 1.5rem; 
 }
+
+.item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item h1 {
+    margin-bottom: 2rem;
+}
+
+.item img{
+    max-width: 500px;
+    height: auto;
+}
+
+.item .price{
+    font-size: 2.5rem;
+}

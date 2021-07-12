@@ -47,6 +47,11 @@ class Item {
             )
         })
     }
+
+    static async getById(id){
+        const items = await Item.getAll()
+        return items.find(c=>c.id===id)
+    }
 }
 
 module.exports = Item
