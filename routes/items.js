@@ -21,4 +21,20 @@ router.get('/:id', async (req,res)=>{
     })
 })
 
+router.get('/:id/edit', async (req,res)=>{
+    if (!req.query.allow){
+        return res.redirect('/')
+    }
+    const item = await Item.getById(req.params.id)
+    res.render('item-edit',{
+        title: `Редактировать ${item.title}`,
+        item
+    })
+})
+
+router.post("/edit", async(req,res)=>{
+    await Item.update(req.body)
+    return res.redirect('/items')
+})
+
 module.exports = router

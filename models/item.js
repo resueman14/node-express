@@ -48,6 +48,25 @@ class Item {
         })
     }
 
+    static async update(item){
+        const items = await Item.getAll()
+
+        const idx = items.findIndex(c=> c.id === item.id)
+        items[idx] = item
+        
+        return new Promise ((resolve, reject)=>{
+            fs.writeFile(
+                path.join(__dirname,'..','data','items.json'),
+                JSON.stringify(items),
+                (err) => {
+                    if (err) { reject(err) 
+                    } else { resolve(
+                    )}
+                }
+            )
+        })
+    }
+
     static async getById(id){
         const items = await Item.getAll()
         return items.find(c=>c.id===id)

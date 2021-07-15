@@ -1,0 +1,22 @@
+<h2>Редактировать {{item.title}}</h2>
+<form action='/items/edit' method="POST">
+    <div class="row">
+        <div class="input-field col s6">
+            <input placeholder="Input item name" name ='title' id="name" type="text" class="validate" required value="{{item.title}}">
+            <label for="name">Item name</label>
+            <span class="helper-text" data-error="Введите название"></span>
+        </div>
+        <div class="input-field col s6">
+            <input placeholder="Input item price" name='price' id="price" type="number" class="validate" required min="100" value="{{item.price}}">
+            <label for="price">Item price</label>
+            <span class="helper-text" data-error="Введите цену"></span>
+        </div>
+    </div>
+    <div class="input-field" style="padding: 0.4rem;">
+        <input placeholder="Input item url" name='img' id="item_img_url" type="text" class="validate" required value="{{item.img}}">
+        <label for="item_img_url">Item image url</label>
+        <span class="helper-text" data-error="Введите URL"></span>
+    </div>
+    <input type="hidden" name="id" value="{{item.id}}">
+    <button class="btn btn-primary">Редактировать объект</button>
+</form>
