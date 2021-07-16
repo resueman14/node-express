@@ -35,7 +35,7 @@ class Item {
         }
     }
 
-    static getAll() {
+    static async getAll() {
         return new Promise((resolve, reject) => {
             fs.readFile(
                 path.join(__dirname,'..','data','items.json'), 
