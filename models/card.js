@@ -37,6 +37,30 @@ class Card {
     })
    } 
 
+   static async remove(id){
+       const card = await Card.fetch()
+
+       const idx = card.items.findIndex(c=> c.id ==id)
+       const item = card.items[idx]
+
+       if (item.count === 1){
+           card.items = card.items.filter(c=> c.id !== id)
+       } else {
+           card.items[idx].count--
+       }
+       card.price -= item.price
+
+       return new Promise((resolve, reject) => {
+        fs.writeFile(p, JSON.stringify(card), err=>{
+            if (err){
+                reject(err)
+            } else {
+                resolve(card)
+            }
+        })
+    })
+   }
+
    static async fetch(){
      return new Promise((resolve,reject)=>{
          fs.readFile(p,'utf-8',(err, content)=>{
@@ -49,5 +73,6 @@ class Card {
      })
    }
 }
+
 
 module.exports = Card
