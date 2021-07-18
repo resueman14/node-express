@@ -3,7 +3,7 @@ const Item = require('../models/item')
 const router = Router()
 
 router.get('/', async (req,res) => {
-    const items = await Item.getAll()
+    const items = await Item.find()
     res.status(200)
     res.render('items',{
         title:'Продукты', 
@@ -13,7 +13,7 @@ router.get('/', async (req,res) => {
 })
 
 router.get('/:id', async (req,res)=>{
-    const item = await Item.getById(req.params.id)
+    const item = await Item.findById(req.params.id)
     res.render('item',{
         layout: 'empty',
         title: `Item ${item.title}`,
@@ -25,7 +25,7 @@ router.get('/:id/edit', async (req,res)=>{
     if (!req.query.allow){
         return res.redirect('/')
     }
-    const item = await Item.getById(req.params.id)
+    const item = await Item.findById(req.params.id)
     res.render('item-edit',{
         title: `Редактировать ${item.title}`,
         item
@@ -33,7 +33,9 @@ router.get('/:id/edit', async (req,res)=>{
 })
 
 router.post("/edit", async(req,res)=>{
-    await Item.update(req.body)
+    const {id} = req.body
+    delete req.body.id
+    await Item.findByIdAndUpdate(id, req.body)
     return res.redirect('/items')
 })
 
