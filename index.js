@@ -25,11 +25,16 @@ app.use('/card', cardRoutes)
 app.use('/items', itemsRoutes)
 
 async function start(){
-  await mongoose.connect(`mongodb://nowruz:123546@127.0.0.1/shop`,{useNewUrlParser: true})
+  try {
+    await mongoose.connect(`mongodb://nowruz:123546@127.0.0.1/shop`,{useNewUrlParser: true})
+    const PORT = process.env.PORT || 3000
+    app.listen(PORT, () => {
+        console.log(`Server is running on port http://127.0.0.1:${PORT}`)
+    })
+  } catch (error) {
+    console.log(error) 
+  }
+
 }
 start()
 
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-    console.log(`Server is running on port http://127.0.0.1:${PORT}`)
-})
