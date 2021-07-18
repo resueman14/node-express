@@ -1,3 +1,4 @@
+const mongoose = require('mongoose')
 const express = require('express')
 const exphbs = require('express-handlebars')
 const path = require('path')
@@ -22,6 +23,11 @@ app.use('/', homeRoutes)
 app.use('/add', addRoutes)
 app.use('/card', cardRoutes)
 app.use('/items', itemsRoutes)
+
+async function start(){
+  await mongoose.connect(`mongodb://nowruz:123546@127.0.0.1/shop`,{useNewUrlParser: true})
+}
+start()
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
