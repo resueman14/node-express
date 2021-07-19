@@ -34,7 +34,10 @@ router.get('/', async(req,res) => {
 })
 
 router.delete('/remove/:id', async (req,res)=>{
-    const card = await Card.remove(req.params.id)
-    res.status(200).json(card)
+    await req.user.removeFromCart(req.params.id)
+    const user = await req.user.populate('cart.items.itemId').execPopulate()
+    const items = mapCartItems(user.cart)
+    const cart = {items, price: computePrice(items)}
+    res.status(200).json(cart)
 })
 module.exports = router

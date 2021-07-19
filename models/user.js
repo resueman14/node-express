@@ -45,4 +45,16 @@ userSchema.methods.addToCart = function(item) {
 
 }
 
+
+userSchema.methods.removeFromCart = function(id){
+    let items = [...this.cart.items]
+    const idx = items.findIndex(c => c.itemId.toString() === id.toString())
+    if (items[idx].count === 1){
+        items = items.filter(c=> c.itemId.toString() !== id.toString())
+    } else {
+        items[idx].count--
+    }
+    this.cart = {items}
+    return this.save()
+}
 module.exports = model('User', userSchema)
