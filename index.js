@@ -29,7 +29,7 @@ app.use('/items', itemsRoutes)
 
 async function start(){
   try {
-    await mongoose.connect(`mongodb://nowruz:123546@127.0.0.1/shop`,{useNewUrlParser: true})
+    await mongoose.connect(`mongodb://nowruz:123546@127.0.0.1/shop`,{useNewUrlParser: true, useUnifiedTopology: true})
     const PORT = process.env.PORT || 3000
     app.listen(PORT, () => {
         console.log(`Server is running on port http://127.0.0.1:${PORT}`)

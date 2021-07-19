@@ -39,4 +39,14 @@ router.post("/edit", async(req,res)=>{
     return res.redirect('/items')
 })
 
+router.post("/remove", async(req,res)=>{
+    try{
+        await Item.deleteOne({ _id: req.body.id })
+        res.redirect('/items')
+    } catch(error){
+        console.log(error)
+    }
+    
+})
+
 module.exports = router
