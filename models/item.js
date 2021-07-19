@@ -15,4 +15,11 @@ const item = new Schema({
     }
 })
 
+item.method('toClient', function(){
+    const item = this.toObject()
+    item.id = item._id
+    delete item._id
+    return item
+})
+
 module.exports = model('Item', item)
