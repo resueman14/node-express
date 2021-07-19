@@ -3,7 +3,8 @@ const Item = require('../models/item')
 const router = Router()
 
 router.get('/', async (req,res) => {
-    const items = await Item.find()
+    const items = await Item.find().populate('userId', 'name email').select('price title img')
+    console.log(items)
     res.status(200)
     res.render('items',{
         title:'Продукты', 

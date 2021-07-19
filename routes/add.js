@@ -13,7 +13,8 @@ router.post('/', async (req,res)=>{
     const item = new Item({
         title: req.body.title,
         price: req.body.price,
-        img: req.body.img
+        img: req.body.img,
+        userId: req.user._id
     })
     try {
         await item.save()
