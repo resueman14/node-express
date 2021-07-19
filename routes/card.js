@@ -3,11 +3,17 @@ const Item = require('../models/item')
 const router = new Router()
 
 function mapCartItems(cart){
-    return cart.items.map(c=>({
+    return cart.items.map(c=>({     //эта хуйня то же самое что нижняя
         ...c.itemId._doc, 
         id: c.itemId.id,
         count: c.count
     }))
+
+    // return cart.items.map(c=>{return{     
+    //     ...c.itemId._doc, 
+    //     id: c.itemId.id,
+    //     count: c.count
+    // }})
 }
 
 function computePrice(items){
