@@ -7,6 +7,7 @@ const homeRoutes = require('./routes/home')
 const addRoutes = require('./routes/add')
 const cardRoutes = require('./routes/card')
 const itemsRoutes = require('./routes/items')
+const ordersRoutes = require('./routes/orders')
 const User = require('./models/user')
 const app = express()
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
@@ -35,11 +36,13 @@ app.use('/', homeRoutes)
 app.use('/add', addRoutes)
 app.use('/card', cardRoutes)
 app.use('/items', itemsRoutes)
+app.use('/orders', ordersRoutes)
 
 async function start(){
   try {
     await mongoose.connect(`mongodb://nowruz:123546@127.0.0.1/shop`,{useNewUrlParser: true, useUnifiedTopology: true})
-    const PORT = process.env.PORT || 3000
+    const PORT = process.env.PORT || 3000 
+    //const PORT = 3000
     const candidate = await User.findOne()
     if (!candidate){
       const user = new User({
