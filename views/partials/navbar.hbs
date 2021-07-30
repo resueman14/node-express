@@ -12,21 +12,32 @@
         {{else}}
           <li><a href="/items">Items</a></li>
         {{/if}}
-        {{#if isAdd}}
+
+        {{#if isAuth}}
+          {{#if isAdd}}
           <li class='active'><a href="/add">Add</a></li>
-        {{else}}
-          <li><a href="/add">Add</a></li>
-        {{/if}}
-        {{#if isCard}}
-          <li class='active'><a href="/card">Kopzuna</a></li>
-        {{else}}
-          <li><a href="/card">Kopzuna</a></li>
-        {{/if}}
-        {{#if isOrder}}
-          <li class='active'><a href="/orders">Заказы</a></li>
-        {{else}}
-          <li><a href="/orders">Заказы</a></li>
-        {{/if}}
+          {{else}}
+            <li><a href="/add">Add</a></li>
+          {{/if}}
+
+          {{#if isCard}}
+            <li class='active'><a href="/card">Kopzuna</a></li>
+          {{else}}
+            <li><a href="/card">Kopzuna</a></li>
+          {{/if}}
+          {{#if isOrder}}
+            <li class='active'><a href="/orders">Заказы</a></li>
+          {{else}}
+            <li><a href="/orders">Заказы</a></li>
+          {{/if}}
+            <li><a href="/auth/logout">Logout</a></li>
       </ul>
+        {{else}}
+          {{#if isLogin}}
+            <li class='active'><a href="/auth">Login</a></li>
+          {{else}}
+            <li><a href="/auth">Login</a></li>
+          {{/if}}
+        {{/if}}
     </div>
   </nav>
