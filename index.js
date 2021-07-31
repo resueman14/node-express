@@ -15,6 +15,7 @@ const app = express()
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const variableMiddleware = require('./middleware/variables')
 const MONGODB_URI = `mongodb://nowruz:123546@127.0.0.1/shop`
+const userMiddleware = require('./middleware/user')
 
 const hbs = exphbs.create({
   defaultLayout: 'main',
@@ -38,6 +39,7 @@ app.use(session({
   store: store
 }))
 app.use(variableMiddleware)
+app.use(userMiddleware)
 app.use('/', homeRoutes)
 app.use('/add', addRoutes)
 app.use('/card', cardRoutes)
