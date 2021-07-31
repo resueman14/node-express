@@ -14,14 +14,18 @@ const authRoutes = require('./routes/auth')
 const app = express()
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const variableMiddleware = require('./middleware/variables')
-
+const MONGODB_URI = `mongodb://nowruz:123546@127.0.0.1/shop`
 
 const hbs = exphbs.create({
   defaultLayout: 'main',
   extname: 'hbs',
   handlebars: allowInsecurePrototypeAccess(Handlebars)
 })
-
+const store = MongoStore({
+  collection: 'sessions',
+  uri:MONGODB_URI
+}
+)
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views','views')
@@ -30,7 +34,8 @@ app.use(express.urlencoded({extended: true}))
 app.use(session({
   secret: 'secret key nahuy',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: store
 }))
 app.use(variableMiddleware)
 app.use('/', homeRoutes)
@@ -43,7 +48,7 @@ app.use('/auth', authRoutes)
 
 async function start(){
   try {
-    await mongoose.connect(`mongodb://nowruz:123546@127.0.0.1/shop`,{useNewUrlParser: true, useUnifiedTopology: true})
+    await mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true})
     const PORT = process.env.PORT || 3000 
     app.listen(PORT, () => {
         console.log(`Server is running on port http://127.0.0.1:${PORT}`)
