@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars')
 const path = require('path')
 const homeRoutes = require('./routes/home')
 const session = require('express-session')
+const MongoStore = require('connect-mongodb-session')(session)
 const addRoutes = require('./routes/add')
 const cardRoutes = require('./routes/card')
 const itemsRoutes = require('./routes/items')
@@ -44,16 +45,6 @@ async function start(){
   try {
     await mongoose.connect(`mongodb://nowruz:123546@127.0.0.1/shop`,{useNewUrlParser: true, useUnifiedTopology: true})
     const PORT = process.env.PORT || 3000 
-
-    // const candidate = await User.findOne()
-    // if (!candidate){
-    //   const user = new User({
-    //     name: "Nowruz",
-    //     email: "nowruz.k@yandex.ru",
-    //     cart: {items:[]}
-    //   })
-    //   await user.save()
-    // }
     app.listen(PORT, () => {
         console.log(`Server is running on port http://127.0.0.1:${PORT}`)
     })
