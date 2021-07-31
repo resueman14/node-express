@@ -11,6 +11,11 @@
         <form action='/auth/login' method="POST">
         <div class="row auth">
             <div class="input-field">
+                <input placeholder="enter login" name ='name' id="name" type="text" class="validate" required>
+                <label for="name">Login</label>
+                <span class="helper-text" data-error="Введите логин"></span>
+            </div>
+            <div class="input-field">
                 <input placeholder="example@email.com" name ='email' id="email" type="text" class="validate" required>
                 <label for="email">E-mail</label>
                 <span class="helper-text" data-error="Введите email"></span>
@@ -31,13 +36,18 @@
         <form action='/auth/register' method="POST">
         <div class="row auth">
             <div class="input-field">
-                <input placeholder="example@email.com" name ='remail' id="remail" type="text" class="validate" required>
-                <label for="remail">E-mail</label>
+                <input placeholder="enter login" name ='name' id="name" type="text" class="validate" required>
+                <label for="name">Login</label>
+                <span class="helper-text" data-error="Введите логин"></span>
+            </div>
+            <div class="input-field">
+                <input placeholder="example@email.com" name ='email' id="email" type="text" class="validate" required>
+                <label for="email">E-mail</label>
                 <span class="helper-text" data-error="Введите email"></span>
             </div>
             <div class="input-field">
-                <input placeholder="qwerty:)" name='rpassword' id="rpassword" type="password" class="validate" >
-                <label for="rpassword">Password</label>
+                <input placeholder="qwerty:)" name='password' id="password" type="password" class="validate" >
+                <label for="password">Password</label>
                 <span class="helper-text" data-error="Введите пароль"></span>
             </div>
             <div class="input-field">
