@@ -1,15 +1,14 @@
 const {Router} = require('express')
 const router = Router()
+const auth = require('../middleware/auth')
 const Item = require('../models/item')
 
-router.get('/', (req,res) => {
+router.get('/', auth, (req,res) => {
     res.status(200)
     res.render('add',{title:'Добавление нового элемента', isAdd: true})
 })
 
-router.post('/', async (req,res)=>{
-    
-    //const item = new Item(req.body.title, req.body.price, req.body.img)
+router.post('/', auth, async (req,res)=>{
     const item = new Item({
         title: req.body.title,
         price: req.body.price,
