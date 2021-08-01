@@ -3,6 +3,7 @@ const express = require('express')
 const Handlebars = require('handlebars')
 const exphbs = require('express-handlebars')
 const path = require('path')
+const csrf = require('csurf')
 const homeRoutes = require('./routes/home')
 const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
@@ -16,6 +17,7 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 const variableMiddleware = require('./middleware/variables')
 const MONGODB_URI = `mongodb://nowruz:123546@127.0.0.1/shop`
 const userMiddleware = require('./middleware/user')
+const csurf = require('csurf')
 
 const hbs = exphbs.create({
   defaultLayout: 'main',
@@ -38,6 +40,7 @@ app.use(session({
   saveUninitialized: false,
   store: store
 }))
+app.use(csurf())
 app.use(variableMiddleware)
 app.use(userMiddleware)
 app.use('/', homeRoutes)
