@@ -7,6 +7,12 @@
       </ul>
     </div>
     <div id="login" class="col s6 offset-s3">
+        {{#if loginError}}
+            <p class="alert">{{loginError}}</p>
+        {{/if}}
+        {{#if registerError}}
+            <p class="alert">{{registerError}}</p>
+        {{/if}}
         <h4>Login</h4>
         <form action='/auth/login' method="POST">
         <div class="row auth">
@@ -32,6 +38,7 @@
 
     </div>
     <div id="registration" class="col s6 offset-s3">
+
         <h4>Register</h4>
         <form action='/auth/register' method="POST">
         <div class="row auth">
