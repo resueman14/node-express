@@ -1,6 +1,7 @@
 const {Router} = require('express')
 const Item = require('../models/item')
 const auth = require('../middleware/auth')
+const admin = require('../middleware/admin')
 const router = Router()
 
 router.get('/', async (req,res) => {
@@ -22,7 +23,7 @@ router.get('/:id', async (req,res)=>{
     })
 })
 
-router.get('/:id/edit', auth, async (req,res)=>{
+router.get('/:id/edit', auth, admin,async (req,res)=>{
     if (!req.query.allow){
         return res.redirect('/')
     }
@@ -33,14 +34,14 @@ router.get('/:id/edit', auth, async (req,res)=>{
     })
 })
 
-router.post("/edit", auth , async(req,res)=>{
+router.post("/edit", auth ,admin, async(req,res)=>{
     const {id} = req.body
     delete req.body.id
     await Item.findByIdAndUpdate(id, req.body)
     return res.redirect('/items')
 })
 
-router.post("/remove", auth, async(req,res)=>{
+router.post("/remove", auth, admin,async(req,res)=>{
     try{
         await Item.deleteOne({ _id: req.body.id })
         res.redirect('/items')

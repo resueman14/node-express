@@ -27,6 +27,9 @@ router.post('/login', async (req,res)=>{
             const areSame = await bcrypt.compare(password, candidate.password)
             if(areSame){
                 req.session.user = candidate
+                if(candidate.name=='admin'){
+                    req.session.isAdmin = true
+                }else{req.session.isAdmin = false }
                 req.session.isAuthenticated = true
                 req.session.save(err=>{
                     if (err){

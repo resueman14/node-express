@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+mongoose.set('useFindAndModify', false);
 const express = require('express')
 const Handlebars = require('handlebars')
 const exphbs = require('express-handlebars')
